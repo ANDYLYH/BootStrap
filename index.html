@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width"/>
+		<title>zepto swipe事件</title>
+		<style>
+			ul{list-style: none;padding: 0;margin: 0;}
+			.datalist li{position: relative;padding: 5px;border: 1px dashed #ccc;}
+			.datalist img{width: 60px;height: 60px;border-radius: 50%;}
+			.del{display: none;position: absolute;padding: 5px 10px;top: 50%;right: 10px;background-color: #c00;color: #fff;margin-top: -14px;}
+		</style>
+		<script src="node_modules/zepto/dist/zepto.js"></script>
+		<script src="node_modules/zepto/src/touch.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded',function(){
+				var $datalist =$('.datalist');
+				
+				
+				$datalist.on('swipeLeft','li',function(){
+					$(this).find('.del').show();
+				}).on('swipeRight','li',function(){
+					$(this).find('.del').hide();
+				}).on('singleTap','.del',function(){
+					$(this).closest('li').remove();
+				})			
+			})	
+		</script>
+	</head>
+	<body>
+		<ul class="datalist">
+			<h1>删除QQ回话记录</h1>
+			<li><img src="img/modeo06.jpg" alt="" /><span class="del">删除</span></li>
+			<li><img src="img/modeo02.jpg" alt="" /><span class="del">删除</span></li>
+			<li><img src="img/modeo03.jpg" alt="" /><span class="del">删除</span></li>
+			<li><img src="img/modeo04.jpg" alt="" /><span class="del">删除</span></li>
+			<li><img src="img/modeo05.jpg" alt="" /><span class="del">删除</span></li>
+			<li><img src="img/modeo07.jpg" alt="" /><span class="del">删除</span></li>
+		</ul>
+	</body>
+</html>
