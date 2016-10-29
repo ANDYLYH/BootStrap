@@ -3,24 +3,28 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width"/>
-		<title>zepto swipe事件</title>
+		<title>删除QQ会话记录</title>
 		<style>
 			ul{list-style: none;padding: 0;margin: 0;}
-			.datalist li{position: relative;padding: 5px;border: 1px dashed #ccc;}
-			.datalist img{width: 60px;height: 60px;border-radius: 50%;}
-			.del{display: none;position: absolute;padding: 5px 10px;top: 50%;right: 10px;background-color: #c00;color: #fff;margin-top: -14px;}
+			.datalist li{position: relative;padding: 5px;border: 1px dashed #ccc;overflow: hidden;}
+			.datalist img{width: 60px;height: 60px;border-radius: 50%;transition: all 0.5;}
+			.del{position: absolute;padding: 30px 10px;
+			   top: 0;right:0px;background-color: #c00;color: #fff;
+			  /* margin-top: -39px;*/transition: all 0.5;transform: translateX(70px);}
+			.datalist .delete{transform: translateX(0px);}
+			.datalist .imgs{transform: translateX(-50px);}
 		</style>
-		<script src="node_modules/zepto/dist/zepto.js"></script>
-		<script src="node_modules/zepto/src/touch.js"></script>
+		<script src="zepto/dist/zepto.js"></script>
+		<script src="zepto/src/touch.js"></script>
 		<script>
 			document.addEventListener('DOMContentLoaded',function(){
 				var $datalist =$('.datalist');
 				
-				
+			     console.log("111");
 				$datalist.on('swipeLeft','li',function(){
-					$(this).find('.del').show();
+					$(this).find('.del').addClass('delete').siblings('img').addClass('imgs');
 				}).on('swipeRight','li',function(){
-					$(this).find('.del').hide();
+					$(this).find('.del').removeClass('delete').siblings('img').removeClass('imgs');
 				}).on('singleTap','.del',function(){
 					$(this).closest('li').remove();
 				})			
